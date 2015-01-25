@@ -103,7 +103,17 @@ namespace PWS_Practical_Assingment
         {
             try
             {
-                return Convert.ToInt32(textBoxP.Text);
+                int n = Convert.ToInt32(textBoxP.Text);
+
+                if (CryptoMath.isPrime(n))
+                {
+                    return n;
+                }
+                else
+                {
+                    MessageBox.Show("Enter a prime number for P!", "Input Error");
+                    return -1;
+                }
             }
             catch
             {
@@ -116,7 +126,17 @@ namespace PWS_Practical_Assingment
         {
             try
             {
-                return Convert.ToInt32(textBoxQ.Text);
+                int n = Convert.ToInt32(textBoxQ.Text);
+
+                if (CryptoMath.isPrime(n))
+                {
+                    return n;
+                }
+                else
+                {
+                    MessageBox.Show("Enter a prime number for Q!", "Input Error");
+                    return -1;
+                }
             }
             catch
             {
@@ -128,22 +148,43 @@ namespace PWS_Practical_Assingment
         private void buttonGenerate_Click(object sender, EventArgs e)
         {
             key = new Key();
-            key.GenerateKey();
+            if (key.GenerateKey())
+            {
+                labelN.Text = "n: " + key.n;
+                labelE.Text = "e: " + key.e;
+                labelD.Text = "d: " + key.d;
+            }
+            else
+            {
+                key = null;
 
-            labelN.Text = "n: " + key.n;
-            labelE.Text = "e: " + key.e;
-            labelD.Text = "d: " + key.d;
+                labelN.Text = "n: ERROR";
+                labelE.Text = "e: ERROR";
+                labelD.Text = "d: ERROR";
+            }
         }
 
         private void buttonEncrypt_Click(object sender, EventArgs e)
         {
-            if (key == null)
+            double plain;
+
+            try
             {
-                MessageBox.Show("Generate a key first!", "Input Error");
+                plain = Convert.ToDouble(textBoxPlainIn.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Enter a valid number as plaintext!", "Input Error");
                 return;
             }
 
-            cipherTextIn = (int) (Convert.ToInt64(Math.Pow(Convert.ToDouble(textBoxPlainIn.Text), key.e)) % Convert.ToInt64(key.n));
+            if (key == null)
+            {
+                MessageBox.Show("Generate a proper key first!", "Input Error");
+                return;
+            }
+
+            cipherTextIn = (int) (Convert.ToInt64(Math.Pow(plain, key.e)) % Convert.ToInt64(key.n));
             textBoxCipherIn.Text = cipherTextIn.ToString();
         }
 
@@ -151,21 +192,14 @@ namespace PWS_Practical_Assingment
         {
             if (key == null)
             {
-                MessageBox.Show("Generate a key first!", "Input Error");
+                MessageBox.Show("Generate a proper key first!", "Input Error");
                 return;
             }
 
             BigInteger cipher = new BigInteger(cipherTextIn);
-            BigInteger a = new BigInteger(cipherTextIn);
+            BigInteger bigN = new BigInteger(Convert.ToInt64(key.n));
 
-            for (int i = 1; i < key.d; i++)
-            {
-                a = cipher * a;
-            }
-
-            BigInteger b = new BigInteger(Convert.ToInt64(key.n));
-
-            textBoxDecrypted.Text = (a % b).ToString();
+            textBoxDecrypted.Text = (CryptoMath.BigPow(cipher, key.d) % bigN).ToString();
         }
 
         private int GetRefTime ()
@@ -180,7 +214,7 @@ namespace PWS_Practical_Assingment
 
             if (key == null)
             {
-                MessageBox.Show("Generate a key first!", "Input Error");
+                MessageBox.Show("Generate a proper key first!", "Input Error");
                 return;
             }
 
@@ -246,7 +280,7 @@ namespace PWS_Practical_Assingment
 
         private void AppendResults(BruteForce instance)
         {
-            rl.Add(new Results(instance.n, instance.timeTaken));
+            rl.Add(new Results(instance.p, instance.q, instance.timeTaken));
             SaveResults();
         }
     }
@@ -272,12 +306,14 @@ namespace PWS_Practical_Assingment
     [Serializable]
     public class Results
     {
-        public int n;
+        public int p;
+        public int q;
         public int time;
 
-        public Results(int n, int t)
+        public Results(int p, int q, int t)
         {
-            this.n = n;
+            this.p = p;
+            this.q = q;
             this.time = t;
         }
 

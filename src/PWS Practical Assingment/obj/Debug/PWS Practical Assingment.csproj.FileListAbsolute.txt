@@ -1,9 +1,0 @@
-D:\Projects\PWS Practical Assingment\PWS Practical Assingment\bin\Debug\PWS Practical Assingment.exe.config
-D:\Projects\PWS Practical Assingment\PWS Practical Assingment\obj\Debug\PWS Practical Assingment.csprojResolveAssemblyReference.cache
-D:\Projects\PWS Practical Assingment\PWS Practical Assingment\obj\Debug\PWS_Practical_Assingment.Properties.Resources.resources
-D:\Projects\PWS Practical Assingment\PWS Practical Assingment\obj\Debug\PWS Practical Assingment.csproj.GenerateResource.Cache
-D:\Projects\PWS Practical Assingment\PWS Practical Assingment\bin\Debug\PWS Practical Assingment.exe
-D:\Projects\PWS Practical Assingment\PWS Practical Assingment\bin\Debug\PWS Practical Assingment.pdb
-D:\Projects\PWS Practical Assingment\PWS Practical Assingment\obj\Debug\PWS Practical Assingment.exe
-D:\Projects\PWS Practical Assingment\PWS Practical Assingment\obj\Debug\PWS Practical Assingment.pdb
-D:\Projects\PWS Practical Assingment\PWS Practical Assingment\obj\Debug\PWS_Practical_Assingment.Main.resources

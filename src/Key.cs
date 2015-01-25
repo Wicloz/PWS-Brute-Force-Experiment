@@ -12,28 +12,14 @@ namespace PWS_Practical_Assingment
         public int e;
         public int d;
 
-        static int GCD(int a, int b)
-        {
-            int Remainder;
-
-            while (b != 0)
-            {
-                Remainder = a % b;
-                a = b;
-                b = Remainder;
-            }
-
-            return a;
-        }
-
-        public void GenerateKey ()
+        public bool GenerateKey ()
         {
             int p = Main.acces.GetP();
             int q = Main.acces.GetQ();
 
             if (p == -1 || q == -1)
             {
-                return;
+                return false;
             }
 
             n = p * q;
@@ -42,7 +28,7 @@ namespace PWS_Practical_Assingment
 
             for (int i = 2; i <= phiN; i++)
             {
-                if (GCD(i, phiN) == 1)
+                if (CryptoMath.GCD(i, phiN) == 1)
                 {
                     e = i;
                     break;
@@ -57,6 +43,8 @@ namespace PWS_Practical_Assingment
                     break;
                 }
             }
+
+            return true;
         }
     }
 }

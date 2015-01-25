@@ -42,42 +42,21 @@ namespace PWS_Practical_Assingment
             findNumber.Start();
         }
 
-        public bool isPrime(int n)
-        {
-            if (n <= 3)
-            {
-                return n > 1;
-            }
-            else if (n % 2 == 0 || n % 3 == 0)
-            {
-                return false;
-            }
-            else
-            {
-                for (int i = 5; i * i <= n; i += 6)
-                {
-                    if (n % i == 0 || n % (i + 2) == 0)
-                    {
-                        return false;
-                    }
-                }
-                return true;
-            }
-        }
-
         private void FindNumber()
         {
-            for (int i = 1; i <= n; i++)
+            int maxNumber = (n /2 ) + 1;
+
+            for (int i = 1; i <= maxNumber; i++)
             {
                 p = i;
 
-                if (isPrime(i))
+                if (CryptoMath.isPrime(i))
                 {
-                    for (int j = 1; j <= n; j++)
+                    for (int j = 1; j <= maxNumber; j++)
                     {
                         q = j;
 
-                        if (isPrime(j))
+                        if (CryptoMath.isPrime(j))
                         {
                             if (i * j == n)
                             {
@@ -111,16 +90,9 @@ namespace PWS_Practical_Assingment
             doneA = true;
 
             BigInteger cipher = new BigInteger(cipherIn);
-            BigInteger a = new BigInteger(cipherIn);
+            BigInteger bigN = new BigInteger(Convert.ToInt64(this.n));
 
-            for (int i = 1; i < this.d; i++)
-            {
-                a = cipher * a;
-            }
-
-            BigInteger b = new BigInteger(Convert.ToInt64(this.n));
-
-            plaintext = (a % b).ToString();
+            plaintext = (CryptoMath.BigPow(cipher, this.d) % bigN).ToString();
             doneB = true;
         }
     }
