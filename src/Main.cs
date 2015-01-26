@@ -184,7 +184,10 @@ namespace PWS_Practical_Assingment
                 return;
             }
 
-            cipherTextIn = (int) (Convert.ToInt64(Math.Pow(plain, key.e)) % Convert.ToInt64(key.n));
+            BigInteger a = new BigInteger(Math.Pow(plain, key.e));
+            BigInteger b = new BigInteger(key.n);
+
+            cipherTextIn = (int) (a % b);
             textBoxCipherIn.Text = cipherTextIn.ToString();
         }
 

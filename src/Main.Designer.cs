@@ -129,7 +129,7 @@
             // labelE
             // 
             this.labelE.AutoSize = true;
-            this.labelE.Location = new System.Drawing.Point(6, 24);
+            this.labelE.Location = new System.Drawing.Point(6, 27);
             this.labelE.Name = "labelE";
             this.labelE.Size = new System.Drawing.Size(16, 13);
             this.labelE.TabIndex = 8;
@@ -138,7 +138,7 @@
             // labelD
             // 
             this.labelD.AutoSize = true;
-            this.labelD.Location = new System.Drawing.Point(6, 37);
+            this.labelD.Location = new System.Drawing.Point(6, 43);
             this.labelD.Name = "labelD";
             this.labelD.Size = new System.Drawing.Size(16, 13);
             this.labelD.TabIndex = 9;
@@ -149,12 +149,11 @@
             this.groupBox1.Controls.Add(this.labelN);
             this.groupBox1.Controls.Add(this.labelD);
             this.groupBox1.Controls.Add(this.labelE);
-            this.groupBox1.Location = new System.Drawing.Point(341, 4);
+            this.groupBox1.Location = new System.Drawing.Point(341, -2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(104, 54);
+            this.groupBox1.Size = new System.Drawing.Size(104, 60);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Output Key";
             // 
             // buttonEncrypt
             // 

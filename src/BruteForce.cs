@@ -44,7 +44,7 @@ namespace PWS_Practical_Assingment
 
         private void FindNumber()
         {
-            int maxNumber = (n /2 ) + 1;
+            int maxNumber = (n / 2) + 1;
 
             for (int i = 1; i <= maxNumber; i++)
             {
